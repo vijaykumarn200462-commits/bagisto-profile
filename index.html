@@ -1,11 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bagisto Profile</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bagisto India 🇮🇳</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #f3f4f6, #e0e7ff);
+      text-align: center;
+      padding-top: 100px;
+    }
+    img {
+      width: 180px;
+    }
+    h1 {
+      font-size: 2rem;
+      margin: 10px 0;
+    }
+    h2 {
+      color: #555;
+      margin-bottom: 30px;
+    }
+    #followers {
+      font-size: 1.5rem;
+      background: #2563eb;
+      color: #fff;
+      display: inline-block;
+      padding: 10px 25px;
+      border-radius: 50px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+  </style>
 </head>
 <body>
-  <h1>Hello from Bagisto!</h1>
+  <img src="https://bagisto.com/wp-content/themes/bagisto/images/logo.svg" alt="Bagisto Logo" />
+  <h1>Bagisto India 🇮🇳</h1>
+  <h2>Live GitHub Followers</h2>
+  <div id="followers">Loading...</div>
+
+  <script>
+    async function getFollowers() {
+      const res = await fetch("https://api.github.com/orgs/bagisto");
+      const data = await res.json();
+      document.getElementById("followers").innerText = `👥 ${data.followers} Followers`;
+    }
+    getFollowers();
+    setInterval(getFollowers, 10000); // update every 10 seconds
+  </script>
 </body>
 </html>
